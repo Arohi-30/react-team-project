@@ -1,7 +1,7 @@
 import React from 'react'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import './Properties.css'
-import useProperties from '../../hooks/useProperties'
+import useProperties from '../../hooks/useProperties.jsx'
 const Properties = () => {
   const{data, isError, isLoading} = useProperties()
   console.log(data)

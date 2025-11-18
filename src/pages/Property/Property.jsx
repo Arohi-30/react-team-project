@@ -7,15 +7,16 @@ import './Property.css';
 
 import { FaShower } from "react-icons/fa";
 import { AiTwotoneCar } from "react-icons/ai";
-import { MdMeetingRoom } from "react-icons/md";
+import { MdLocationPin, MdMeetingRoom } from "react-icons/md";
+import Map from '../../components/Map/Map';
 const Property = () => {
-    const { pathname } = useLocation();
-    const id = pathname.split("/").slice(-1)[0];
-    const { data, isLoading, isError } = useQuery(["resd", id], () =>
+  const { pathname } = useLocation();
+  const id = pathname.split("/").slice(-1)[0];
+  const { data, isLoading, isError } = useQuery(["resd", id], () =>
     getProperty(id)
   );
 
- if (isLoading) {
+  if (isLoading) {
     return (
       <div className="wrapper">
         <div className="flexCenter paddings">
@@ -40,7 +41,7 @@ const Property = () => {
       <div className="flexColStart paddings innerWidth property-container">
         {/* like button */}
         <div className="like">
-          <Heart id={id}/>
+          <Heart id={id} />
         </div>
 
         {/* image */}
@@ -96,13 +97,16 @@ const Property = () => {
             </div>
 
             {/* booking button */}
-            
-              <button className="button">
-                Book your visit
-              </button>
+
+            <button className="button">
+              Book your visit
+            </button>
           </div>
 
           {/* right side */}
+          <div className="map">
+            <Map address={data?.address} city={data?.city} country={data?.country} />
+          </div>
         </div>
       </div>
     </div>
